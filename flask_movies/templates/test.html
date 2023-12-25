@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>movie_food</title>
+    <!--不請求icon-->
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+    <!-- <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet"/> -->
+    <link href="../static/style.css" rel="stylesheet"/>
+ </head>
+  <body>
+    <h1 >電癮</h1>
+    <form method="post" action="/">
+      <input type="submit" value="本周新上映" name="action1"/>
+      <input type="submit" value="IMDB前25名" name="action2" />
+    </form>
+
+  <!-- 開眼 -->
+    {% for i in range(mLen) %}
+    <div class="card">
+      <h2><b>{{moviesList[i][0]}}</b></h2>
+      {% for j in range(1,5) %}
+      <p>{{moviesList[i][j]}}</p>
+      {% endfor %}
+
+      <a href="{{moviesList[i][5]}}">想看預告片就點我一下</a>
+    </div>
+    {% endfor %}
+<!-- IMDB前25名 -->
+  {% for i in range(mLen1) %}
+    <div class="card">
+      <h2>第{{i+1}}名：{{imdbList[i][1]}}</h2>
+      <p>imdb評分：{{imdbList[i][0]}}</p>
+      <p>上映年份：{{imdbList[i][2]}}</p>
+      <p>時長：{{imdbList[i][3]}}</p>
+      <a href="{{imdbList[i][4]}}">點我看更多資訊</a>
+    </div>
+    {% endfor %}
+
+  </body>
+</html>
